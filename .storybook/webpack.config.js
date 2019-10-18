@@ -1,1 +1,1 @@
-module.exports = require('@picchietti/build/webpack.config.js');
+module.exports = require('@picchietti/build/webpack.dev.js');
