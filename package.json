@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@picchietti/build": "git+https://github.com/picchietti/build.git",
+    "@storybook/addon-docs": "^5.2.4",
     "@storybook/react": "^5.1.8",
     "babel-loader": "^8.0.6"
   },

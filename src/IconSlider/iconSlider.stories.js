@@ -17,6 +17,9 @@ library.add(
 );
 
 storiesOf('IconSlider', module)
+  .addParameters({
+    component: IconSlider
+  })
   .add('with git website icons', () => {
     const onIcon = ['fab', 'gitlab'];
     const offIcon = ['fab', 'github'];
