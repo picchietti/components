@@ -1,25 +1,58 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
-  faGithub, faGitlab
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faCheckCircle, faTimesCircle
+  faCheckCircle, faTimesCircle, fas
 } from '@fortawesome/free-solid-svg-icons';
 
 import IconSlider from './';
 
 library.add(
-  faGithub,
-  faGitlab,
-  faCheckCircle
+  fab,
+  fas,
+  faCheckCircle,
+  faTimesCircle
 );
 
-storiesOf('IconSlider', module)
+const stories = storiesOf('IconSlider', module);
+
+stories
+  .addDecorator(withKnobs)
   .addParameters({
     component: IconSlider
   })
+  .add('with knobs', () => (
+    <IconSlider
+      onIcon={
+        select(
+          'onIcon',
+          {
+            smile: 'smile',
+            grin: 'grin',
+            squint: 'grin-squint',
+            'heart eyes': 'grin-hearts'
+          },
+          'smile'
+        )
+      }
+      offIcon={
+        select(
+          'offIcon',
+          {
+            frown: 'frown',
+            'big frown': 'frown-open',
+            tear: 'sad-tear',
+            angry: 'angry'
+          },
+          'frown'
+        )
+      }
+      onText={text('onText', 'On')}
+      offText={text('offText', 'Off')}
+    />
+  ))
   .add('with git website icons', () => {
     const onIcon = ['fab', 'gitlab'];
     const offIcon = ['fab', 'github'];
@@ -45,9 +78,10 @@ storiesOf('IconSlider', module)
       offText={ offText }
     />);
   })
-  .add('with status icons', () => (
+  .add('with default on', () => (
     <IconSlider
-      onIcon="check-circle"
+      isOn={ true }
+      onIcon={ faCheckCircle }
       offIcon={ faTimesCircle }
       onText="Missiles armed"
       offText="Missiles disarmed"
@@ -56,13 +90,13 @@ storiesOf('IconSlider', module)
   .add('without text', () => (
     <IconSlider
       onIcon="check-circle"
-      offIcon={ faTimesCircle }
+      offIcon="times-circle"
     />
   ))
   .add('with event handler', () => (
     <IconSlider
       onIcon="check-circle"
-      offIcon={ faTimesCircle }
+      offIcon="times-circle"
       handleChange={ (changedTo) => { changedTo && alert('Boo!'); } }
     />
   ));
