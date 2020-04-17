@@ -3,7 +3,7 @@
 }
 
   .slider {
-    background-color: #ddd;
+    background-color: var(--light, #dbdee1);
     border-radius: 20px;
     box-sizing: content-box;
     cursor: pointer;
